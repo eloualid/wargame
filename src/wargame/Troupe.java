@@ -13,5 +13,5 @@ import java.util.TreeSet;
  */
 public class Troupe extends Soldat{
     private TreeSet Soldat;
-    private Terrain espocc;  
+    private Case[][] espocc;  
 }

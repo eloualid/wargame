@@ -10,6 +10,9 @@ package wargame;
  * @author pci
  */
 public class Case {
-    private  int Largeur;
-    private int Longueur;
+    public  float x;
+    public float y;
+    public String nature;
+    
+    
 }

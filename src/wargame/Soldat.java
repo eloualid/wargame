@@ -15,10 +15,8 @@ public class Soldat {
     private TreeSet Arme;
     private TreeSet Ressources;
     private int force;
+    private Case position;
+    
     public void deplacer(){
-        
     };
-    private void nourir(){
-        
-    }
 }

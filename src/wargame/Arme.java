@@ -12,14 +12,9 @@ import java.util.TreeSet;
  * @author pci
  */
 public class Arme {
-    private String Origine;
     private float Poids;
     private float Portee;
     public int degreinf;
     public String Nature;
-    private TreeSet Ressource;
-    public void tirer(){
-        
-    } 
-    
+    private TreeSet Ressource;  
 }
