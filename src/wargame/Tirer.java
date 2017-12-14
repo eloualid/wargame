@@ -9,8 +9,6 @@ package wargame;
  *
  * @author pci
  */
-public class Case {
-    public  float x;
-    public float y;
-    public String nature; 
+public interface Tirer {
+    
 }

@@ -14,4 +14,5 @@ import java.util.TreeSet;
 public class Troupe extends Soldat{
     private TreeSet Soldat;
     private Case[][] espocc;  
+    
 }
