@@ -11,15 +11,15 @@ import java.util.TreeSet;
  *
  * @author pci
  */
-public class Soldat implements Actions{
+public class Soldat implements Actions,Scene{
     private  Arme arme;
-    private int force;
-    private int positionx;
-    private int positiony;
+    private int force; //le nombre qui represente la santé du soldat
+    private int positionx; //indice i de la case occupée par le soldat dans le terrain
+    private int positiony; //indice j de la case occupée par le soldat dans le terrain
     public Soldat(){
         force = 150;
     }
-    public void Deplacer(String direction){
+    public void deplacer(String direction){
         switch(direction){
             case "haut" : this.positiony +=1;  //déplacement en haut 
             case "bas" : this.positiony -=1;  //deplacement en bas 
@@ -29,10 +29,28 @@ public class Soldat implements Actions{
             case "gbas" :  { this.positionx+=1; this.positiony+=1;}  //deplacement en haut à gauche
         }
         }
-        public void tirer (){
+        public void tirer (Case c){
+           int d = this.calcul_distance(c);
+           int p = this.arme.getPortee();
+           if(p >= d ){
+               if(Wargame.tour == "j1"){
+                   //retour de soldat/troupe ciblé
+                   //dimunition de la force
+               }
+               if(Wargame.tour == "j1"){
+                   
+               }
+               
+           }
         }
-        public void ramasser (){
+        public void ramasser (Case c){
+            if (c.nature == "n")this.force+=30;
+            if (c.nature == "oil")//augmentation du budget du joueur possedant ce soldat
+            if (c.nature == "or")this.force+=30;//augmentation du budget du joueur possedant ce soldat
         }
-        public void deplacer (){
+        public int calcul_distance(Case c){
+           Case s= t.maquette[this.positionx][this.positiony];
+           int  d = (int) Math.sqrt((s.x-c.x)*(s.x-c.x)+(s.y-c.y)*(s.y-c.y)); 
+           return d;
         }
 }

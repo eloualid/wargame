@@ -65,6 +65,7 @@ public class Joueur {
                         }
                         if(i==2){
                             //création des objets troupes avec revolver
+                            
                         }
                          if(i==3){
                             //création des objets troupes
@@ -73,4 +74,8 @@ public class Joueur {
               }
          }
     }
+     public void jouer(){
+         
+     }
+     
 }

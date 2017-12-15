@@ -12,8 +12,7 @@ import java.util.TreeSet;
  * @author pci
  */
 public class Troupe extends Soldat{
-    private TreeSet Soldat;
-    private Case[][] espocc;  
+    private TreeSet Soldat;  
     public void deplacer(){
         
     }

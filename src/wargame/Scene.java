@@ -9,10 +9,9 @@ package wargame;
  *
  * @author pci
  */
-public interface Actions {
-    public void deplacer(String direction);
-    public void tirer(Case c);
-    public void ramasser(Case c);
-    public int calcul_distance(Case c);
+public interface Scene {
+    Terrain t = new Terrain(100,100); //intialisation du plataeau du jeux 'création des cases' 
+    Joueur j1 = new Joueur(1);
+    Joueur j2 = new Joueur(2);
     
 }

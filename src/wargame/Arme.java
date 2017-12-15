@@ -22,7 +22,7 @@ public class Arme {
         if (designation == "Clash"){
                 this.designation="Clash";
                 this.degreinf= 30;
-                this.portee = 3;
+                this.portee = 9;
                 this.munition= 30;
                 this.cout = 3000;
                 this.poids = 4.5;
@@ -30,7 +30,7 @@ public class Arme {
         }else if (designation == "Revolver"){
                 this.designation="Revolver";
                 this.degreinf= 10;
-                this.portee = 1;
+                this.portee = 3;
                 this.munition= 10;
                 this.cout = 100;
                 this.poids = 0.5;
@@ -39,7 +39,7 @@ public class Arme {
         }else if (designation == "D30"){
             this.designation="D30";
                 this.degreinf= 100;
-                this.portee = 6;
+                this.portee = 20;
                 this.munition= 10;
                 this.cout = 30000;
                 this.poids = 900;
