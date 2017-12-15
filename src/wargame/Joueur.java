@@ -58,11 +58,15 @@ public class Joueur {
                        this.budget -= cout;
                         if(i==1){
                             //création des objets soldats avec clash
+                            for (int k=0;k<q;k++){
+                                Soldat s = new Soldat();
+                                soldats.add(s);
+                            }
                         }
-                        if(i==1){
+                        if(i==2){
                             //création des objets troupes avec revolver
                         }
-                         if(i==1){
+                         if(i==3){
                             //création des objets troupes
                         }
                    }

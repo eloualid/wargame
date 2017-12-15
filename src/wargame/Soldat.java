@@ -11,7 +11,7 @@ import java.util.TreeSet;
  *
  * @author pci
  */
-public class Soldat implements Deplacer,Tirer,Ramasser{
+public class Soldat implements Actions{
     private  Arme arme;
     private int force;
     private int positionx;
@@ -31,7 +31,8 @@ public class Soldat implements Deplacer,Tirer,Ramasser{
         }
         public void tirer (){
         }
-         public void ramasser (){
+        public void ramasser (){
         }
-      
+        public void deplacer (){
+        }
 }
