@@ -30,12 +30,15 @@ public class Wargame implements Scene{
        System.out.print("VOUS AVEZ LA POSSIBILITE POUR AUGMENTEZ VOTRE BUDGET DURANT LE JEUX");
        t.construction_terrain(); // installation des obstacles des QG de chaque joueurs, des rivieres ,montagnes ..etc
        t.repartition_ressource(); // repartition des ressources Or et pétrole sur la plateau du jeux 
-       liste_armes(); // Affichage de la liste des armes disponible dans le jeux
+       //liste_armes(); // Affichage de la liste des armes disponible dans le jeux
        t.afficher_terrain();
-       j1.force_selection();  //selection des forces pour le premier joueur selon budget
-       j2.force_selection();  //selection des forces pour le deuxiéme joueur selon budget
-       j1.placer_soldats();
-       j2.placer_soldats();
+      //test_deplacement(); test de déplacement des soldats 
+       //test_combat();
+       test_recup_ressource();
+       //j1.force_selection();  //selection des forces pour le premier joueur selon budget
+      // j2.force_selection();  //selection des forces pour le deuxiéme joueur selon budget
+      // j1.placer_soldats();
+       //j2.placer_soldats();
        /*  while(quitter != true){
            j1.jouer(); //tour du joueur N°1
            switch_tour(); //echange de tour entre joueur
@@ -44,7 +47,84 @@ public class Wargame implements Scene{
        //commencer_jeux(); //lancement du jeux pour 
     }
    
-    public static void commencer_jeux(){  
+    public static void test_deplacement(){  
+        Soldat s = new Soldat(30,41);
+        //-------------------------------------------------
+        s.deplacer("haut");
+        s.Afficher_soldat();
+        //-------------------------------------------------
+        s.deplacer("bas");
+        s.Afficher_soldat();
+        //-------------------------------------------------
+        s.deplacer("dhaut");
+        s.Afficher_soldat();
+        //-------------------------------------------------
+        s.deplacer("gbas");
+        s.Afficher_soldat();
+        //-------------------------------------------------
+        s.deplacer("dbas");
+        s.Afficher_soldat();
+        //-------------------------------------------------
+        s.deplacer("ghaut");
+        s.Afficher_soldat();
+        //-------------------------------------------------
+    }
+    public static void test_combat(){  
+           Soldat s = new Soldat(30,41); // création des soldats 
+            Soldat s2 = new Soldat(32,41); //monter l'effet de la portee et l'efficacité entre les armes proposés.
+           //Soldat s2 = new Soldat(35,41);
+           Arme a1 = new Arme("Clash"); //création des armes 
+           Arme a2 = new Arme("Revolver");
+          
+           s.arme = a1; //armement des soldats 
+           s2.arme = a2;
+           j1.add_soldat(s);
+           j2.add_soldat(s2);
+          
+           Case c = t.maquette[s2.positionx][s2.positiony]; 
+           Case c2 = t.maquette[s.positionx][s.positiony];
+           System.out.print("force du deuxiéme soldat avant tir "+s2.force+"\n");
+           s.tirer(c);
+          
+           System.out.print("force du deuxiéme soldat apres tir "+s2.force+"\n");
+           System.out.print("force du premier soldat avant tir "+s.force+"\n");
+           tour = "j2";
+           s2.tirer(c2);
+           System.out.print("force du premier soldat apres tir "+s.force+"\n");
+            tour = "j1";
+           //simulation de la mort d'un soldat
+             s.tirer(c);
+             s.tirer(c);
+             s.tirer(c);
+             System.out.print("force du deuxiéme soldat apres tir "+s2.force+"\n");
+             s.tirer(c);
+             s.tirer(c);
+             s.tirer(c);
+             System.out.print("force du deuxiéme soldat apres tir "+s2.force+"\n");
+             s.tirer(c);
+             j2.test_soldats();
+             
+    }
+    public static void test_recup_ressource(){  //test de la recuperation d'une ressource
+            Soldat s = new Soldat(30,41); // création des soldats 
+            tour = "j1";
+            t.maquette[34][45].nature="or";
+            Case c = t.maquette[34][45];
+            s.deplacer("dhaut");
+            s.Afficher_soldat();
+            s.deplacer("dhaut");
+            s.Afficher_soldat();
+            s.deplacer("dhaut");
+            s.Afficher_soldat();
+            s.deplacer("dhaut");
+            s.Afficher_soldat();
+            s.deplacer("haut");
+            s.Afficher_soldat();
+            s.deplacer("haut");
+            s.Afficher_soldat();
+            s.ramasser(c);
+            System.out.print(j1.getBudget()+"\n");
+            System.out.print(t.maquette[34][45].nature);
     }
     public static void liste_armes(){ 
          //initialisation 

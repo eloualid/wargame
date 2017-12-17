@@ -19,30 +19,68 @@ public class Soldat implements Actions,Scene{
     public Soldat(){
         force = 150;
     }
+    public Soldat(int x,int y){
+        force = 150;
+        positionx = x;
+        positiony = y;
+    }
     public void deplacer(String direction){
         switch(direction){
-            case "haut" : this.positiony +=1;  //déplacement en haut 
-            case "bas" : this.positiony -=1;  //deplacement en bas 
-            case "dbas" : this.positionx+=1;  //deplacement en haut à droite 
-            case "gbas" : this.positionx-=1;   //deplacement en bas à gauche
-            case "ghaut" : {this.positionx-=1; this.positiony+=1;} //deplacement en haut à gauche
-            case "dhaut" :  { this.positionx+=1; this.positiony+=1;}  // deplacement en haut à droite 
-            if(Wargame.tour == "j1"){
+                case "haut" :if(this.positiony < (t.getLargeur()-1)) this.positiony +=1;break;  //déplacement en haut 
+                case "bas" :if(this.positiony > 0) this.positiony -=1;break;  //deplacement en bas 
+                
+                case "dbas" : if(this.positionx < (t.getLongueur()-1)){
+                     if((this.positionx%2==1)){
+                         this.positionx+=1;
+                     }else{
+                           this.positionx+=1;
+                           this.positiony-=1;
+                     }
+                } break; //deplacement en bas à droite 
+                case "gbas" : if(this.positionx > 0){
+                    if((this.positionx%2==1)){
+                         this.positionx-=1;
+                     }else{
+                           this.positionx-=1;
+                           this.positiony-=1;
+                     }
+                 break; } //deplacement en bas à gauche
+                case "ghaut" :if((this.positionx > 0)&&(this.positiony < (t.getLargeur()-1))) {
+                     if((this.positionx%2==1)){
+                         this.positionx-=1;
+                         this.positiony+=1;
+                     }else{
+                           this.positionx-=1;
+                     }
+                    break;}
+                //deplacement en haut à gauche
+                case "dhaut" : if((this.positionx < (t.getLongueur()-1))&&(this.positiony < (t.getLargeur()-1))) 
+                { 
+                    if((this.positionx%2==1)){
+                         this.positionx+=1;
+                         this.positiony+=1;
+                     }else{
+                           this.positionx+=1;
+                     }
+                  break;} // deplacement en haut à droite 
+           /* if(Wargame.tour == "j1"){
                  if (t.maquette[this.positionx][this.positiony].nature == "q2") Wargame.quitter=true;
             }
             if(Wargame.tour == "j2"){
                  if (t.maquette[this.positionx][this.positiony].nature == "q1") Wargame.quitter=true;
-            }
+            }*/
         }
         }
         public void tirer (Case c){
            int d = this.calcul_distance(c);
+            
            int p = this.arme.getPortee();
+           
            Soldat s = null;
            Troupe troupe=null;
            if(p >= d ){
                if(Wargame.tour == "j1"){
-                   //retour de "soldat/troupe" ciblé puis dimunition de sa force
+                   //retour de "soldat/troupe" du deuxiéme joueur ciblé puis dimunition de sa force
                    s = j2.getsoldat(c);
                    if(s!=null){
                         s.force-=this.arme.getDegInf();
@@ -71,8 +109,11 @@ public class Soldat implements Actions,Scene{
            }
         }
         public void ramasser (Case c){
-             //augmentation de la force du soldat
-            if (c.nature == "n")this.force+=30;
+             
+            int d = this.calcul_distance(c);
+            if(d==0){
+                //augmentation de la force du soldat
+            if (c.nature == "n"){this.force+=30; c.nature="v";}
             //augmentation du budget du joueur possedant le soldat
             if (c.nature == "oil"){
                 if(Wargame.tour == "j1"){
@@ -81,6 +122,7 @@ public class Soldat implements Actions,Scene{
                  if(Wargame.tour == "j2"){
                     j2.setBudget(1000);
                 }
+                 c.nature="v";
             }
             if (c.nature == "or"){
                 if(Wargame.tour == "j1"){
@@ -89,7 +131,10 @@ public class Soldat implements Actions,Scene{
                  if(Wargame.tour == "j2"){
                     j2.setBudget(1500);
                 }
+                  c.nature="v";
             }
+            }
+             
         }
         public int calcul_distance(Case c){
            Case s= t.maquette[this.positionx][this.positiony];
@@ -99,8 +144,13 @@ public class Soldat implements Actions,Scene{
         public int getPositionx(){
             return this.positionx;
         }
-         public int getPositiony(){
+        public int getPositiony(){
             return this.positiony;
         }
-       
+       public void Afficher_soldat(){
+         System.out.print("votre force est : "+ force+"\n");
+         System.out.print("votre position x est  : "+ positionx+"\n");
+         System.out.print("votre position y est : "+ positiony+"\n");
+        }
+        
 }

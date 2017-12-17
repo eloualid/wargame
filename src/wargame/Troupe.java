@@ -22,12 +22,12 @@ public class Troupe extends Soldat{
          while(it.hasNext()){
            Soldat s= (Soldat)it.next();
               switch(direction){
-                case "haut" : this.positiony +=1;  //déplacement en haut 
-                case "bas" : this.positiony -=1;  //deplacement en bas 
-                case "dbas" : this.positionx+=1;  //deplacement en haut à droite 
-                case "gbas" : this.positionx-=1;   //deplacement en bas à gauche
-                case "ghaut" : {this.positionx-=1; this.positiony+=1;} //deplacement en haut à gauche
-                case "dhaut" :  { this.positionx+=1; this.positiony+=1;}  // deplacement en haut à droite 
+                case "haut"  : s.deplacer("haut"); break; //déplacement en haut 
+                case "bas"   : s.deplacer("bas");  //deplacement en bas 
+                case "dbas"  : s.deplacer("dbas");  //deplacement en bas à droite 
+                case "gbas"  : s.deplacer("gbas");  //deplacement en bas à gauche
+                case "ghaut" : s.deplacer("ghaut"); //deplacement en haut à gauche
+                case "dhaut" : s.deplacer("dhaut"); // deplacement en haut à droite 
                 if(Wargame.tour == "j1"){
                      if (t.maquette[s.positionx][s.positiony].nature == "q2") Wargame.quitter=true;
                 }
@@ -56,4 +56,10 @@ public class Troupe extends Soldat{
         this.Soldat.add(s);
     }
     //----------------------------------------------------------------------------------------------------------------------------------
+    public void test_soldats(){
+        
+          if (this.Soldat.isEmpty()){
+              System.out.print("soldats epuisées\n");
+          }else System.out.print("il y on a encore des soldats\n");
+    }
 }

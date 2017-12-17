@@ -157,4 +157,13 @@ public class Joueur implements Scene {
           //initialisation des position des troupes séléctionner par le joueur dans son QG
           
       }
+      public void add_soldat(Soldat s){
+           this.soldats.add(s);
+      }
+      public void test_soldats(){
+        
+          if (this.soldats.isEmpty()){
+              System.out.print("soldats epuisées\n");
+          }else System.out.print("il y on a encore des soldats\n");
+    }
 } 
