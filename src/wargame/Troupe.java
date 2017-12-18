@@ -12,30 +12,31 @@ import java.util.Iterator;
  * @author pci
  */
 //------------------------------------------------------------------------------------------------------------------------------------
-public class Troupe extends Soldat{
+public class Troupe extends Unite{
     private HashSet Soldat;  
-    Troupe(){
+   public  Troupe(){
         Soldat = new HashSet();
+        for(int i=0;i<14;i++){
+            Soldat  s = new Soldat();
+            Soldat.add(s);
+        }
+         this.force = 14*150;
+         this.arme = new Arme("D30");
     }
     public void deplacer(String direction){
          Iterator it = this.Soldat.iterator();
          while(it.hasNext()){
            Soldat s= (Soldat)it.next();
               switch(direction){
-                case "haut"  : s.deplacer("haut"); break; //déplacement en haut 
-                case "bas"   : s.deplacer("bas");  //deplacement en bas 
-                case "dbas"  : s.deplacer("dbas");  //deplacement en bas à droite 
-                case "gbas"  : s.deplacer("gbas");  //deplacement en bas à gauche
-                case "ghaut" : s.deplacer("ghaut"); //deplacement en haut à gauche
-                case "dhaut" : s.deplacer("dhaut"); // deplacement en haut à droite 
-                if(Wargame.tour == "j1"){
-                     if (t.maquette[s.positionx][s.positiony].nature == "q2") Wargame.quitter=true;
-                }
-                if(Wargame.tour == "j2"){
-                     if (t.maquette[s.positionx][s.positiony].nature == "q1") Wargame.quitter=true;
-                }
+                case "haut"  : s.deplacer("haut",3); break; //déplacement en haut 
+                case "bas"   : s.deplacer("bas",3);  break;   //deplacement en bas 
+                case "dbas"  : s.deplacer("dbas",3); break;  //deplacement en bas à droite 
+                case "gbas"  : s.deplacer("gbas",3); break;  //deplacement en bas à gauche
+                case "ghaut" : s.deplacer("ghaut",3);break; //deplacement en haut à gauche
+                case "dhaut" : s.deplacer("dhaut",3);break; // deplacement en haut à droite 
               }
          }
+         setposition();
     }
     //------------------------------------------------------tirer---------------------------------------------------------------------
     @Override
@@ -56,10 +57,26 @@ public class Troupe extends Soldat{
         this.Soldat.add(s);
     }
     //----------------------------------------------------------------------------------------------------------------------------------
-    public void test_soldats(){
+    public void est_vide(){
         
           if (this.Soldat.isEmpty()){
               System.out.print("soldats epuisées\n");
           }else System.out.print("il y on a encore des soldats\n");
     }
+    //-------------------------------------------------------------------------------------
+    public void setposition(){
+        Iterator it = this.Soldat.iterator();
+        int x=0;
+        int y=0;
+         while(it.hasNext()){
+           Soldat s= (Soldat)it.next();
+           x+=s.positionx;
+           y+=s.positiony;    
+         }
+         this.positionx = Math.round(x/14);
+         this.positiony = Math.round(y/14);
+    }
+    //------------------------------------------------------------------------------------
+   
+    
 }

@@ -18,6 +18,7 @@ public class Arme {
     private int munition;  
     private String designation ;
     public int cout ;
+     //-------------------------------------------------------------------------------------------
     public Arme(String designation){
         if (designation == "Clash"){
                 this.designation="Clash";

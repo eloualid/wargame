@@ -26,12 +26,14 @@ public class Joueur implements Scene {
         soldats = new HashSet();
         troupes = new HashSet();
     }
+     //-------------------------------------------------------------------------------------------
     public void setBudget(double montant){
         this.budget += montant;
     }
     public double  getBudget(){
         return this.budget ;
     }
+    //-----------------------------------------------------------------------------------------------------------------
      public void force_selection(){
          System.out.print("JOUEUR N° :"+ this.numero +" VOUS POUVEZ SELECTIONNER VOS FORCES !!");
          System.out.print("Liste des forces disponibles !!");
@@ -91,11 +93,26 @@ public class Joueur implements Scene {
               }
          }
     }
+     //----------------------------------------------------------------------------------------------------
      public void jouer(){
-         
+         Scanner sc = new Scanner(System.in);
+              System.out.print("3 action sont possible !! \n");
+              System.out.print("1 pour deplacer une unité \n");
+              System.out.print("2 pour tirer sur une cible \n");
+              System.out.print("3 pour ramasser une ressource \n");
+              int i = 0;
+              i = sc.nextInt(); 
+              Case c = new Case();
+              Case c2 = new Case();
+              if(i== 1){
+                  getunite(c).deplacer("");
+              }else if(i== 2){
+                  getunite(c).tirer(c2);
+              }else if(i==3) getunite(c).ramasser(c2);else
+                  System.out.print("Choix invalide ...");
      }
      //-----------------------------------Recherche d'un soldat positionné dans une case donné ---------------------------------------
-     public Soldat getsoldat(Case c){
+    public Soldat getunite(Case c){
           Iterator it = this.soldats.iterator();
       while (it.hasNext()){
           Soldat s= (Soldat)it.next();
@@ -153,17 +170,21 @@ public class Joueur implements Scene {
               j--;
           }
       }
+      //-------------------------------------------------------------------------------------------
        public void placer_troupes(int position){
           //initialisation des position des troupes séléctionner par le joueur dans son QG
           
       }
+        //-------------------------------------------------------------------------------------------
       public void add_soldat(Soldat s){
            this.soldats.add(s);
       }
-      public void test_soldats(){
+       //-------------------------------------------------------------------------------------------
+      public void est_vide(){
         
           if (this.soldats.isEmpty()){
               System.out.print("soldats epuisées\n");
           }else System.out.print("il y on a encore des soldats\n");
     }
+       //-------------------------------------------------------------------------------------------
 } 

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package wargame;
-
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.TreeSet;
@@ -36,10 +35,10 @@ public class Wargame implements Scene{
        //test_combat();
        test_recup_ressource();
        //j1.force_selection();  //selection des forces pour le premier joueur selon budget
-      // j2.force_selection();  //selection des forces pour le deuxiéme joueur selon budget
+       //j2.force_selection();  //selection des forces pour le deuxiéme joueur selon budget
       // j1.placer_soldats();
        //j2.placer_soldats();
-       /*  while(quitter != true){
+      /*  while(quitter != true){
            j1.jouer(); //tour du joueur N°1
            switch_tour(); //echange de tour entre joueur
            j2.jouer(); //tour du joueur N°2
@@ -51,22 +50,22 @@ public class Wargame implements Scene{
         Soldat s = new Soldat(30,41);
         //-------------------------------------------------
         s.deplacer("haut");
-        s.Afficher_soldat();
+        s.Afficher_unite();
         //-------------------------------------------------
         s.deplacer("bas");
-        s.Afficher_soldat();
+        s.Afficher_unite();
         //-------------------------------------------------
         s.deplacer("dhaut");
-        s.Afficher_soldat();
+         s.Afficher_unite();
         //-------------------------------------------------
         s.deplacer("gbas");
-        s.Afficher_soldat();
+         s.Afficher_unite();
         //-------------------------------------------------
         s.deplacer("dbas");
-        s.Afficher_soldat();
+         s.Afficher_unite();
         //-------------------------------------------------
         s.deplacer("ghaut");
-        s.Afficher_soldat();
+        s.Afficher_unite();
         //-------------------------------------------------
     }
     public static void test_combat(){  
@@ -91,7 +90,7 @@ public class Wargame implements Scene{
            tour = "j2";
            s2.tirer(c2);
            System.out.print("force du premier soldat apres tir "+s.force+"\n");
-            tour = "j1";
+           tour = "j1";
            //simulation de la mort d'un soldat
              s.tirer(c);
              s.tirer(c);
@@ -102,7 +101,7 @@ public class Wargame implements Scene{
              s.tirer(c);
              System.out.print("force du deuxiéme soldat apres tir "+s2.force+"\n");
              s.tirer(c);
-             j2.test_soldats();
+             j2.est_vide();
              
     }
     public static void test_recup_ressource(){  //test de la recuperation d'une ressource
@@ -111,17 +110,17 @@ public class Wargame implements Scene{
             t.maquette[34][45].nature="or";
             Case c = t.maquette[34][45];
             s.deplacer("dhaut");
-            s.Afficher_soldat();
+            s.Afficher_unite();
             s.deplacer("dhaut");
-            s.Afficher_soldat();
+            s.Afficher_unite();
             s.deplacer("dhaut");
-            s.Afficher_soldat();
+             s.Afficher_unite();
             s.deplacer("dhaut");
-            s.Afficher_soldat();
+             s.Afficher_unite();
             s.deplacer("haut");
-            s.Afficher_soldat();
+            s.Afficher_unite();
             s.deplacer("haut");
-            s.Afficher_soldat();
+             s.Afficher_unite();
             s.ramasser(c);
             System.out.print(j1.getBudget()+"\n");
             System.out.print(t.maquette[34][45].nature);
@@ -138,6 +137,6 @@ public class Wargame implements Scene{
         //------------------------------------------------------------------------   
     }  
     public static void switch_tour(){
-        if (tour=="j1") tour ="j2";else tour="j1";
+        if (tour=="j1") tour ="j2";else tour="j1"; //échanger le tour entre les deux joueur en alternance
     }
 }

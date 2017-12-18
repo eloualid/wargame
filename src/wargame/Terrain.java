@@ -72,7 +72,7 @@ public class Terrain {
        //repartition des cellules qui contient la nourriture pour les soldats
        for(int k=0;k<seuil;k++){
              x = Math.random();
-             i = (int) Math.round((this.longueur-1)*x);
+             i = 10+(int) Math.round((this.longueur-20)*x);
              y = Math.random();
              j = (int) Math.round((this.largeur-1)*y);
             if(this.maquette[i][j].nature == "v") this.maquette[i][j].nature = "n";
@@ -98,8 +98,8 @@ public class Terrain {
        //-------------------------------------------------------------------
        int nbrobs = 5+(int) Math.round(Math.random()* 20); //On définit un minimum de 5 et max de 25 obstacles.
        for (int i=0;i<nbrobs;i++){
-           int l = 10+(int) Math.round(Math.random()* (longueur-20));
-           int h = (int) Math.round(Math.random()* largeur);
+           int l = 10+(int) Math.round(Math.random()* (this.longueur-20));
+           int h = (int) Math.round(Math.random()* (this.largeur-1));
            this.maquette[l][h].nature = "m";
        } 
    }
